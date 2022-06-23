@@ -1,3 +1,5 @@
+# 부모 찾기
+
 def parents(v):
     q = [v]
     while q:

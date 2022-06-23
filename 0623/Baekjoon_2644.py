@@ -1,3 +1,5 @@
+# 촌수 계산
+
 def chonsu(v):
     q = [v]
     while q:

@@ -1,3 +1,5 @@
+# 체스판
+
 def chess(v):
     q = [v]
     while q:
