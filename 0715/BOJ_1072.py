@@ -1,22 +1,21 @@
 # 게임
 
 import sys
-import math
 
 def BS(s, e):
-    global cnt
-    rate = Y / X
-    Z = math.trunc(rate * 100)
+    rst = 0
+    Z = int((Y * 100) / X)
     if Z == 99 or Z == 100:
         return -1
     while s <= e:
         mid = (s + e) // 2
-        if math.trunc((Y + mid / X + mid) * 100) == Z:
-            s = mid + 1
-        else:
-            cnt = mid
+        if int((Y + mid) / (X + mid) * 100) > Z:
+            rst = mid
             e = mid - 1
-    return cnt
+        else:
+            s = mid + 1
+    return rst
+
 
 X, Y = map(int, sys.stdin.readline().rstrip().split())
 
