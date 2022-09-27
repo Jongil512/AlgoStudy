@@ -3,21 +3,10 @@
 import sys
 
 def BS(s, e, k, t):
-    cnt = 0
     while s <= e:
         mid = (s + e) // 2
         if arr[mid] == k:
-            cnt += 1
-            visited[mid] = 1
-            for idx in (-1, 1):
-                while 0 <= mid+idx < N and arr[mid+idx] == k:
-                    if not visited[mid+idx]:
-                        visited[mid+idx] = 1
-                        mid = mid + idx
-                        cnt += 1
-                    else:
-                        mid = mid + idx
-            ans[t] = cnt
+            ans[t] = match_num[k]
             return
         elif arr[mid] <= k:
             s = mid + 1
@@ -30,12 +19,19 @@ N = int(sys.stdin.readline().rstrip())
 arr = list(map(int, sys.stdin.readline().rstrip().split()))
 M = int(sys.stdin.readline().rstrip())
 check = list(map(int, sys.stdin.readline().rstrip().split()))
-visited = [0]*N
 
 arr.sort()
 s = 0
 e = len(arr) - 1
 ans = [0]*M
+match_num = {
+}
+
+for num in arr:
+    if num in match_num:
+        match_num[num] += 1
+    else:
+        match_num[num] = 1
 
 for i in range(M):
     BS(s, e, check[i], i)
