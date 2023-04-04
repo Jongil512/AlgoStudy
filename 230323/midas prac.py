@@ -32,19 +32,20 @@ def solution(n, m, x, y, z):
             r += str(now)
 
             for j in bridge[now]:
-                if not visited[j[0]] and dijk[v][now] + j[1] < dijk[v][j[0]]:
-                    dijk[v][j[0]] = dijk[v][now] + j[1]
-                    route.append(r + str(j[0]))
+                if now > j[0]:
+                    if not visited[j[0]] and dijk[v][now] + j[1] < dijk[v][j[0]]:
+                        dijk[v][j[0]] = dijk[v][now] + j[1]
+                        route.append(r + str(j[0]))
 
     for i in range(1, n+1):
         visited = [0] * (n + 1)
         r = ''
         dijkstra(i, r)
-
     for road in route:
         for i in range(len(road)-1):
             involved[int(road[i])][int(road[i+1])] += 1
-
+    print(involved)
+    print(route)
     for idx, (s, e) in enumerate(zip(x, y)):
         tmp.append([involved[s][e], idx+1])
 
@@ -53,7 +54,9 @@ def solution(n, m, x, y, z):
         answer.append(t[1])
     return answer
 
-# print(solution(3, 3, [1, 1, 2], [3, 2, 3], [1, 5, 2]))
+print(solution(3, 3, [1, 1, 2], [3, 2, 3], [1, 5, 2]))
 # return    [1, 3, 2]
-# print(solution(4, 4, [1, 1, 3, 4], [3, 4, 2, 2], [2, 1, 1, 2]))
+print(solution(4, 4, [1, 1, 3, 4], [3, 4, 2, 2], [2, 1, 1, 2]))
 # return    [1, 2, 3, 4]
+print(solution(5, 5, [1, 1, 1, 2, 3], [2, 4, 5, 3, 4], [1, 2, 6, 11, 4]))
+# return    [2, 1, 3, 5, 4]

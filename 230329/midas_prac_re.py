@@ -44,12 +44,10 @@ def solution(n, m, x, y, z):
         l = len(route[s][e][-1])
         for road in route[s][e]:
             if len(road) == l:
-                print(road)
                 for i in range(len(road)-1):
                     traffic[int(road[i])][int(road[i+1])] += 1
                     traffic[int(road[i+1])][int(road[i])] += 1
                 break
-    print(traffic)
 
     tmp = []
     for idx, (s, e) in enumerate(zip(x, y)):
